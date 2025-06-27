@@ -1,0 +1,49 @@
+{% extends "admin/base_site.html" %}
+
+{% block title %}Import Excel Data{% endblock %}
+
+{% block content %}
+{% load static %}
+{% load i18n %}
+
+{% block extrahead %}
+<h1>Import Fund Data from Excel</h1>
+
+<form method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    <div class="form-row">
+        <div class="form-group">
+            <label for="excel_file">Excel File:</label>
+            <input type="file" name="excel_file" accept=".xlsx,.xls" required>
+        </div>
+    </div>
+    <button type="submit" class="btn btn-primary">Import Data</button>
+    <a href="{% url 'admin:myapp_fund_changelist' %}" class="btn btn-secondary">Cancel</a>
+</form>
+
+<div class="help">
+    <h3>Excel File Format:</h3>
+    <p>Your Excel file should have the following columns:</p>
+    <ul>
+        <li>name</li>
+        <li>amc_name</li>
+        <li>primary_badge</li>
+        <li>market_cap</li>
+        <li>cagr</li>
+        <li>equity_size</li>
+        <li>high_return</li>
+        <li>low_return</li>
+        <li>std_deviation</li>
+        <li>sharpe_ratio</li>
+        <li>sortino_ratio</li>
+        <li>beta</li>
+        <li>alpha</li>
+        <li>r_squared</li>
+        <li>expense_ratio</li>
+        <li>nav</li>
+        <li>aum</li>
+        <li>lock_in_period</li>
+        <li>date (for historical records)</li>
+    </ul>
+</div>
+{% endblock %}
